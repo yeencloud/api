@@ -7,8 +7,12 @@ COPY go.sum .
 
 ARG GIT_SHA
 RUN echo $GIT_SHA
+RUN echo ${GIT_SHA}
 
 ARG opts
+RUN echo $opts
+RUN echo ${opts}
+
 RUN env ${opts} go mod download
 RUN env ${opts} go mod tidy
 
