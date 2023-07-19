@@ -25,6 +25,9 @@ jobs:
       - name: Add SHORT_SHA env property with commit short sha
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
 
+      - name: Print environment variable
+        run: echo 1 $GITHUB_SHA 2 ${GITHUB_SHA} 3 $SHORT_SHA 4 ${SHORT_SHA}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
         with:
