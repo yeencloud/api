@@ -54,7 +54,7 @@ jobs:
         id: docker_build_arm
         uses: docker/build-push-action@v4
         with:
-          build-args: GOOS=linux GOARCH=arm GOARM=5 ARCH=arm64 GIT_SHA=${GITHUB_SHA}
+          build-args: GOOS=linux GOARCH=arm GOARM=7 ARCH=arm64 GIT_SHA=${GITHUB_SHA}
           context: ./
           file: ./Dockerfile
           platforms: linux/arm64
