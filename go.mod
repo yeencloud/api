@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/gin-gonic/gin v1.9.1
-	github.com/yeencloud/ServiceCore v1.10.0
+	github.com/yeencloud/ServiceCore v1.11.0
 )
 
 require (

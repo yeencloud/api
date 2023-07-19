@@ -27,13 +27,13 @@ func main() {
 			return
 		}
 
-		data, err := service.Call("Arith", "Add", gin.H{
+		data := service.Call("Arith", "Add", gin.H{
 			"A": A,
 			"B": B,
 		})
 
-		if err != nil {
-			c.JSON(err.HttpCode, err)
+		if data.Error != nil {
+			c.JSON(data.Error.HttpCode, data)
 			return
 		}
 
