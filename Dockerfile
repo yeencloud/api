@@ -15,5 +15,5 @@ COPY . .
 RUN env ${opts} go build ./cmd/main.go
 
 WORKDIR /app
-ENV GIT_SHA ${GIT_SHA}
+ENV GIT_SHA 50
 ENTRYPOINT ["./main"]
