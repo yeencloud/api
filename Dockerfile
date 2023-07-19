@@ -5,6 +5,9 @@ WORKDIR /app
 COPY go.mod .
 COPY go.sum .
 
+ARG GIT_SHA
+RUN echo $GIT_SHA
+
 ARG opts
 RUN env ${opts} go mod download
 RUN env ${opts} go mod tidy
@@ -13,8 +16,6 @@ COPY . .
 
 
 RUN env ${opts} go build ./cmd/main.go
-
-ARG GIT_SHA
 
 WORKDIR /app
 ENV SHA=${GIT_SHA}
