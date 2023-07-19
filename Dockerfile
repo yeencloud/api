@@ -9,6 +9,10 @@ ARG GIT_SHA
 RUN echo $GIT_SHA
 RUN echo ${GIT_SHA}
 
+ARG GOARCH
+RUN echo GOARCH
+RUN echo ${GOARCH}
+
 ARG opts
 RUN echo $opts
 RUN echo ${opts}
