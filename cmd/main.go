@@ -16,7 +16,7 @@ func main() {
 
 	spew.Dump(os.Environ())
 
-	spew.Dump(os.Getenv("GIT_SHA"))
+	spew.Dump(os.Getenv("GITHUB_SHA"))
 
 	r := gin.Default()
 	r.GET("/:A/:B", func(c *gin.Context) {

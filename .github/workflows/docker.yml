@@ -41,7 +41,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v4
         with:
-          build-args: GOOS=linux GOARCH=amd64 ARCH=amd64 GIT_SHA=${GITHUB_SHA}
+          build-args: GITHUB_SHA=${GITHUB_SHA}
           context: ./
           platforms: linux/amd64,linux/arm64
           file: ./Dockerfile
@@ -49,7 +49,7 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
           no-cache: true
         env:
-          GIT_SHA: ${GITHUB_SHA}
+          GITHUB_SHA: ${GITHUB_SHA}
 
       - name: Create new manifest
         run: docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest-amd64 ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest-arm64
