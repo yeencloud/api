@@ -3,6 +3,7 @@ module github.com/yeencloud/api
 go 1.20
 
 require (
+	github.com/davecgh/go-spew v1.1.1
 	github.com/gin-gonic/gin v1.9.1
 	github.com/yeencloud/ServiceCore v1.11.0
 )
