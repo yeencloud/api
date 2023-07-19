@@ -43,23 +43,10 @@ jobs:
         with:
           build-args: GOOS=linux GOARCH=amd64 ARCH=amd64 GIT_SHA=${GITHUB_SHA}
           context: ./
+          platforms: linux/amd64,linux/arm64
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest-amd64
-          no-cache: true
-        env:
-          GIT_SHA: ${GITHUB_SHA}
-
-      - name: Build ARM64
-        id: docker_build_arm
-        uses: docker/build-push-action@v4
-        with:
-          build-args: GOOS=linux GOARCH=arm GOARM=7 ARCH=arm64 GIT_SHA=${GITHUB_SHA}
-          context: ./
-          file: ./Dockerfile
-          platforms: linux/arm64
-          push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest-arm64
+          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
           no-cache: true
         env:
           GIT_SHA: ${GITHUB_SHA}
