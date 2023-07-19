@@ -7,6 +7,7 @@ COPY go.sum .
 
 ARG opts
 RUN env ${opts} go mod download
+RUN env ${opts} go mod tidy
 
 COPY . .
 
