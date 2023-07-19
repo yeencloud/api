@@ -15,5 +15,4 @@ COPY . .
 RUN env ${opts} go build ./cmd/main.go
 
 WORKDIR /app
-ENV SHA ${opts.GITHUB_SHA}
 ENTRYPOINT ["./main", "-commit", "${opts}"]
