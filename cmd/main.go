@@ -1,14 +1,18 @@
 package main
 
 import (
+	"github.com/davecgh/go-spew/spew"
 	"github.com/gin-gonic/gin"
 	"github.com/yeencloud/ServiceCore"
 	"net/http"
+	"os"
 	"strconv"
 )
 
 func main() {
 	service := servicecore.NewServiceClient()
+
+	spew.Dump(os.Getenv("GIT_SHA"))
 
 	r := gin.Default()
 	r.GET("/:A/:B", func(c *gin.Context) {

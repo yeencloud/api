@@ -21,6 +21,10 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
         with:
@@ -34,7 +38,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          build_args: GOOS=linux GOARCH=amd64 ARCH=amd64
+          build_args: GOOS=linux GOARCH=amd64 ARCH=amd64 GIT_SHA=${{ env.sha_short }}
           context: ./
           file: ./Dockerfile
           push: true
@@ -45,7 +49,7 @@ jobs:
         id: docker_build_arm
         uses: docker/build-push-action@v2
         with:
-          build_args: GOOS=linux GOARCH=arm GOARM=5 ARCH=arm64
+          build_args: GOOS=linux GOARCH=arm GOARM=5 ARCH=arm64 GIT_SHA=${{ env.sha_short }}
           context: ./
           file: ./Dockerfile
           platforms: linux/arm64
