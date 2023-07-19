@@ -12,6 +12,8 @@ import (
 func main() {
 	service := servicecore.NewServiceClient()
 
+	spew.Dump(os.Args)
+
 	spew.Dump(os.Environ())
 
 	spew.Dump(os.Getenv("GIT_SHA"))
