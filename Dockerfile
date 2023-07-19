@@ -15,5 +15,5 @@ COPY . .
 RUN env ${opts} go build ./cmd/main.go
 
 WORKDIR /app
-ENV opts {opts}
+ENV opts ${opts}
 ENTRYPOINT ["./main"]
