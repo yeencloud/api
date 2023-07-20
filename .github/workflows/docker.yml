@@ -21,13 +21,6 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-
-      - name: Add SHORT_SHA env property with commit short sha
-        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-
-      - name: Print environment variable
-        run: echo 1 $GITHUB_SHA 2 ${GITHUB_SHA} 3 $SHORT_SHA 4 ${SHORT_SHA}
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
         with:
@@ -41,12 +34,10 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v4
         with:
-          build-args: GITHUB_SHA=${{github.sha}}
+          build-args: GITHUB_SHA=${{github.sha}} GITHUB_REPOSITORY=${{github.repository}} GITHUB_REPOSITORY_URL=${{github.repositoryUrl}}
           context: ./
           platforms: linux/amd64,linux/arm64
           file: ./Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
           no-cache: true
-        env:
-          GITHUB_SHA: ${GITHUB_SHA}
